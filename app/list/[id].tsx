@@ -1,13 +1,15 @@
-import { Link } from 'expo-router';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Stack, useLocalSearchParams } from 'expo-router';
 
-const list = () => {
+const detailPage = () => {
+    const { id } = useLocalSearchParams(); // Extract the dynamic route parameter
+
     return (
         <View style={styles.container}>
-            <Link href={'/list/1'}>Detail view One</Link>
-            <Link href={'/list/2'}>Detail view Two</Link>
-            <Link href={'/list/3'}>Detail view Three</Link>
+            <Stack.Screen options={{ title: `Details #${id}` }} />
+
+            <Text>Detail View {id}</Text>
         </View>
     );
 };
@@ -18,8 +20,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#fff',
-        gap: 10,
     },
 });
 
-export default list;
+export default detailPage;
